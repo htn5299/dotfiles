@@ -1,24 +1,29 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    opts = { ui = { border = "single" } },
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", "bashls", "ts_ls" },
-    },
-  },
+  -- Native LSP configuration via nvim-lspconfig (không cần Mason, dùng LSP server có sẵn trên hệ thống)
   {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      for _, server in ipairs({ "lua_ls", "pyright", "gopls", "rust_analyzer", "bashls", "ts_ls" }) do
-        lspconfig[server].setup({ capabilities = capabilities })
+      -- Danh sách LSP servers cài đặt trực tiếp qua DNF / Cargo / Go / NPM trên Fedora
+      local servers = {
+        "lua_ls",         -- Lua
+        "pyright",        -- Python
+        "gopls",          -- Go
+        "rust_analyzer",  -- Rust
+        "bashls",         -- Bash
+        "ts_ls",          -- TypeScript / JavaScript
+        "nil_ls",         -- Nix (nếu cần)
+      }
+
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup({
+          capabilities = capabilities,
+        })
       end
 
+      -- Diagnostic Signs hiển thị icon lỗi/cảnh báo
       vim.diagnostic.config({
         underline = true,
         update_in_insert = false,
@@ -35,6 +40,8 @@ return {
       })
     end,
   },
+
+  -- Format on save
   {
     "stevearc/conform.nvim",
     opts = {
@@ -50,5 +57,7 @@ return {
       end,
     },
   },
+
+  -- Trouble.nvim để duyệt danh sách lỗi/diagnostics
   { "folke/trouble.nvim", opts = {} },
 }
