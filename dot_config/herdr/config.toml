@@ -1,0 +1,35 @@
+onboarding = false
+[keys]
+prefix    = "ctrl+a"
+copy_mode = "prefix+]"
+
+[theme]
+name        = "tokyo-night"
+auto_switch = false
+
+[theme.custom]
+panel_bg    = "none"
+surface0    = "#282a2e"
+surface1    = "#373b41"
+surface_dim = "#080909"
+overlay0    = "#969896"
+overlay1    = "#b4b7b4"
+text        = "#e0e0e0"
+subtext0    = "#c5c8c6"
+red         = "#cc6666"
+green       = "#b5bd68"
+yellow      = "#f0c674"
+blue        = "#81a2be"
+mauve       = "#b294bb"
+teal        = "#8abeb7"
+peach       = "#de935f"
+accent      = "#81a2be"
+
+[ui.toast]
+delivery = "herdr"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+status_indicators                 = "dots"
+copy_on_select                    = false
+agent_panel_sort = "spaces"

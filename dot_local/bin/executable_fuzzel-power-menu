@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+SELECTION="$(printf "Lock\nSuspend\nLog out\nReboot\nShutdown" | fuzzel --dmenu -l 5 -p "power menu: ")"
+
+case $SELECTION in
+*"Lock")
+  loginctl lock-session "$XDG_SESSION_ID"
+  ;;
+*"Suspend")
+  systemctl suspend
+  ;;
+*"Log out")
+  loginctl terminate-user "$USER"
+  ;;
+*"Reboot")
+  systemctl reboot
+  ;;
+*"Shutdown")
+  systemctl poweroff
+  ;;
+esac
