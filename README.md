@@ -22,8 +22,8 @@ sudo dnf install -y niri xwayland-satellite waybar swaync fuzzel waypaper bluema
                     brightnessctl playerctl pamixer cliphist wl-clipboard \
                     pipewire-utils pavucontrol acpi jq
 
-# 3. Input Method (Vietnamese / Fcitx5)
-sudo dnf install -y fcitx5 fcitx5-unikey fcitx5-gtk fcitx5-qt
+# 3. Input Method (Vietnamese / Fcitx5 with Bamboo engine)
+sudo dnf install -y fcitx5 fcitx5-bamboo fcitx5-unikey fcitx5-gtk fcitx5-qt
 
 # 4. Terminal, Editor & Core CLI Utilities
 sudo dnf install -y chezmoi git lazygit zsh ghostty neovim \
