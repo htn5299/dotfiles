@@ -10,7 +10,7 @@ environment {
     QT_IM_MODULE "fcitx"
     XMODIFIERS "@im=fcitx"
 }
-// spawn-at-startup "uwsm" "finalize"
+spawn-at-startup "uwsm" "finalize"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "waypaper" "--restore"

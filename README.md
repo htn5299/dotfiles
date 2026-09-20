@@ -16,8 +16,8 @@ sudo dnf copr enable -y yalter/niri
 sudo dnf copr enable -y pgdev/ghostty
 
 # 2. Window Manager, Desktop Components, Portals & Audio/Brightness
-sudo dnf install -y niri xwayland-satellite waybar swaync fuzzel waypaper blueman \
-                    hypridle hyprlock \
+sudo dnf install -y niri uwsm xwayland-satellite waybar swaync fuzzel waypaper blueman \
+                    hypridle hyprlock hyprpicker thunar \
                     xdg-desktop-portal-gtk xdg-desktop-portal-gnome polkit-gnome nautilus \
                     brightnessctl playerctl pamixer cliphist wl-clipboard \
                     pipewire-utils pavucontrol acpi jq
