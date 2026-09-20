@@ -33,6 +33,8 @@ Key components and directory structure:
   - To view changes before applying: `chezmoi diff`.
 - **Committing Changes**:
   - Use conventional commits (e.g., `feat:`, `fix:`, `refactor:`, `docs:`).
+- **Git Push Rule**:
+  - **NEVER push to remote repository automatically.** Only commit locally and push when explicitly requested by the user.
 
 ## Tech Stack & Conventions
 
