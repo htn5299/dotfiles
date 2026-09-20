@@ -15,9 +15,10 @@ Open terminal and run:
 sudo dnf copr enable -y yalter/niri
 sudo dnf copr enable -y pgdev/ghostty
 
-# 2. Window Manager, Desktop Components & Audio/Brightness
-sudo dnf install -y niri waybar swaync fuzzel waypaper blueman \
+# 2. Window Manager, Desktop Components, Portals & Audio/Brightness
+sudo dnf install -y niri xwayland-satellite waybar swaync fuzzel waypaper blueman \
                     hypridle hyprlock \
+                    xdg-desktop-portal-gtk xdg-desktop-portal-gnome polkit-gnome nautilus \
                     brightnessctl playerctl pamixer cliphist wl-clipboard \
                     pipewire-utils pavucontrol acpi jq
 
