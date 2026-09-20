@@ -31,10 +31,10 @@ Key components and directory structure:
 - **Applying Changes**:
   - After modifying files in this repo, run `chezmoi apply` to deploy changes to the local system.
   - To view changes before applying: `chezmoi diff`.
-- **Committing Changes**:
-  - Use conventional commits (e.g., `feat:`, `fix:`, `refactor:`, `docs:`).
-- **Git Push Rule**:
-  - **NEVER push to remote repository automatically.** Only commit locally and push when explicitly requested by the user.
+- **Git Workflow Rules**:
+  - **NEVER run `git commit` or `git push` automatically.** 
+  - Only modify files in the working tree. Creating commits and pushing to remote repositories must ONLY be done when explicitly asked by the user.
+  - When committing is requested, use conventional commits (e.g., `feat:`, `fix:`, `refactor:`, `docs:`).
 
 ## Tech Stack & Conventions
 
