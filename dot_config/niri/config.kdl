@@ -7,8 +7,12 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     XDG_SESSION_TYPE "wayland"
     XDG_CURRENT_DESKTOP "niri"
+    GTK_IM_MODULE "fcitx"
+    QT_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
 }
 // spawn-at-startup "uwsm" "finalize"
+spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "blueman-applet"
 // output "eDP-1" {

@@ -1,0 +1,30 @@
+[timer]
+work         = 32.0
+break        = 8.0
+long_break   = 12.0
+sessions     = 4
+auto_advance = "none"
+
+[sound]
+mode = "none"
+
+[display]
+text_format = "{time}"
+
+[hooks.on_work_end]
+cmd = "pw-play"
+args = [
+  "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
+]
+
+[hooks.on_break_end]
+cmd = "pw-play"
+args = [
+  "/usr/share/sounds/freedesktop/stereo/window-attention.oga",
+]
+
+[hooks.on_long_break_end]
+cmd = "pw-play"
+args = [
+  "/usr/share/sounds/freedesktop/stereo/dialog-information.oga",
+]
