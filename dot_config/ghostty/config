@@ -1,0 +1,45 @@
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 12
+
+# Base24 Tomorrow Night Palette
+background = #191b1d
+foreground = #c5c8c6
+cursor-color = #c5c8c6
+selection-background = #373b41
+selection-foreground = #c5c8c6
+
+palette = 0=#191b1d
+palette = 1=#cc6666
+palette = 2=#b5bd68
+palette = 3=#f0c674
+palette = 4=#81a2be
+palette = 5=#b294bb
+palette = 6=#8abeb7
+palette = 7=#c5c8c6
+palette = 8=#969896
+palette = 9=#e74c3c
+palette = 10=#b8d4b3
+palette = 11=#f7dc6f
+palette = 12=#85c1e9
+palette = 13=#d7a3ca
+palette = 14=#95d3ce
+palette = 15=#ffffff
+
+resize-overlay = never
+copy-on-select = false
+confirm-close-surface = false
+mouse-hide-while-typing = true
+window-padding-balance = true
+window-padding-color = background
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-decoration = false
+auto-update = off
+clipboard-paste-protection = false
+
+keybind = shift+end=unbind
+keybind = shift+home=unbind
+keybind = ctrl+shift+left=unbind
+keybind = ctrl+shift+right=unbind
+keybind = ctrl+enter=unbind
+keybind = ctrl+shift+space=toggle_window_decorations

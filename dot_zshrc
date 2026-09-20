@@ -1,0 +1,57 @@
+# Modern prompt and navigation
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
+
+# Zsh Plugins (Cài qua dnf: sudo dnf install zsh-autosuggestions zsh-syntax-highlighting)
+for p in /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+         /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+  [ -f "$p" ] && source "$p"
+done
+
+# History configuration
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS EXTENDED_HISTORY
+
+# Vi-mode & Keybindings
+bindkey -v
+export KEYTIMEOUT=1
+
+PROMPT_EOL_MARK=""
+
+zstyle ':completion:*' menu no
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w'
+
+bindkey '^?' backward-delete-char
+bindkey -M viins '^e' autosuggest-accept
+bindkey -M vicmd '^e' autosuggest-accept
+
+# Aliases
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza -lh --git"
+  alias la="eza -A --git"
+  alias ll="eza -l --git"
+  alias lla="eza -lA"
+  alias tree="eza --icons --tree --group-directories-first"
+fi
+
+if command -v fdfind >/dev/null 2>&1; then
+  alias fd="fdfind"
+fi
+
+alias yta='yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata \
+--embed-thumbnail --convert-thumbnail jpg \
+--cookies-from-browser firefox \
+--output="~/Music/yt-dlp/%(playlist)s/%(title)s.%(ext)s"'
+
+export PATH="$HOME/.local/bin:$PATH"

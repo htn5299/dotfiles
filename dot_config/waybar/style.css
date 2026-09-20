@@ -1,0 +1,133 @@
+@define-color base00 #191b1d;
+@define-color base01 #282a2e;
+@define-color base02 #373b41;
+@define-color base03 #969896;
+@define-color base04 #b4b7b4;
+@define-color base05 #c5c8c6;
+@define-color base06 #e0e0e0;
+@define-color base07 #ffffff;
+@define-color base08 #cc6666;
+@define-color base09 #de935f;
+@define-color base0A #f0c674;
+@define-color base0B #b5bd68;
+@define-color base0C #8abeb7;
+@define-color base0D #81a2be;
+@define-color base0E #b294bb;
+@define-color base0F #a3685a;
+@define-color base10 #080909;
+@define-color base11 #2d3135;
+@define-color base12 #e74c3c;
+@define-color base13 #f7dc6f;
+@define-color base14 #b8d4b3;
+@define-color base15 #95d3ce;
+@define-color base16 #85c1e9;
+@define-color base17 #d7a3ca;
+
+* {
+  font-family: "NotoSans Nerd Font", sans-serif;
+  min-height: 0px;
+  font-size: 18px;
+  transition: 0s;
+}
+
+window#waybar {
+  background-color: alpha(@base00, 0.9);
+  color: @base06;
+}
+
+tooltip {
+  background-color: @base00;
+  border: 1px solid @base03;
+}
+
+tooltip label {
+  color: @base06;
+}
+
+.modules-left {
+  padding-top: 0;
+}
+
+.modules-right {
+  padding-bottom: 0;
+}
+
+#workspaces button {
+  border: none;
+  border-radius: 0;
+  margin: 2px 2px 0 2px;
+  min-width: 0;
+  min-height: 28px;
+  padding: 0;
+  background-color: @base01;
+  color: @base04;
+}
+
+#workspaces button:hover {
+  background-color: @base02;
+  color: @base06;
+}
+
+#workspaces button.urgent {
+  background-color: @base08;
+  color: @base00;
+}
+
+#workspaces button.active {
+  background-color: @base0D;
+  color: @base00;
+}
+
+#tray,
+#battery,
+#cpu,
+#memory,
+#clock,
+#pulseaudio,
+#idle_inhibitor,
+#custom-tomat {
+  padding: 6px 0;
+  margin: 2px 0;
+  background-color: transparent;
+  color: @base06;
+}
+
+/* tomat pomodoro states */
+#custom-tomat.work {
+  color: @base08; /* đỏ - đang làm việc */
+}
+
+#custom-tomat.break {
+  color: @base0B; /* xanh lá - đang nghỉ */
+}
+
+#custom-tomat.long-break {
+  color: @base0D;
+}
+
+#custom-tomat.work-paused,
+#custom-tomat.break-paused,
+#custom-tomat.long-break-paused {
+  color: @base03; /* xám - khi pause */
+}
+
+#idle_inhibitor.activated {
+  color: @base0B;
+}
+
+/* Battery */
+#battery {
+  color: @base06;
+}
+
+#battery.charging {
+  color: @base06;
+}
+
+#battery.warning:not(.charging) {
+  color: @base0A;
+}
+
+#battery.critical:not(.charging) {
+  color: @base08;
+}
