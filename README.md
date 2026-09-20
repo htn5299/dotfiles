@@ -1,17 +1,17 @@
 # Dotfiles for Fedora (Managed with Chezmoi)
 
-Cấu hình dotfiles cá nhân cho **Fedora Linux**, sử dụng Wayland compositor **Niri**, được quản lý đồng bộ qua [chezmoi](https://www.chezmoi.io/).
+Personal dotfiles configuration for **Fedora Linux**, using the **Niri** Wayland compositor, managed and synchronized via [chezmoi](https://www.chezmoi.io/).
 
 ---
 
-## 🚀 Quickstart trên máy Fedora mới cài
+## 🚀 Quickstart on a Fresh Fedora Installation
 
-### Bước 1: Kích hoạt COPR & Cài đặt gói phần mềm
+### Step 1: Enable COPR Repositories & Install Packages
 
-Mở terminal và chạy cụm lệnh sau:
+Open terminal and run:
 
 ```bash
-# 1. Kích hoạt COPR cho Niri & Ghostty
+# 1. Enable COPR for Niri & Ghostty
 sudo dnf copr enable -y yalter/niri
 sudo dnf copr enable -y pgdev/ghostty
 
@@ -21,10 +21,10 @@ sudo dnf install -y niri waybar swaync fuzzel waypaper blueman \
                     brightnessctl playerctl pamixer cliphist wl-clipboard \
                     pipewire-utils pavucontrol acpi jq
 
-# 3. Bộ gõ Tiếng Việt (Fcitx5)
+# 3. Input Method (Vietnamese / Fcitx5)
 sudo dnf install -y fcitx5 fcitx5-unikey fcitx5-gtk fcitx5-qt
 
-# 4. Terminal, Trình soạn thảo & CLI Utilities
+# 4. Terminal, Editor & Core CLI Utilities
 sudo dnf install -y chezmoi git lazygit zsh ghostty neovim \
                     gcc make ripgrep fd-find fzf zoxide eza bat yt-dlp
 
@@ -35,112 +35,111 @@ sudo dnf install -y zsh-autosuggestions zsh-syntax-highlighting
 sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 ```
 
-> **Cài đặt công cụ phụ trợ (Tuỳ chọn):**
-> - **Tomat** (Pomodoro timer cho Waybar): Tải binary đặt vào `~/.local/bin/` hoặc `cargo install tomat`.
-> - **Kanata** (Key remapping Caps/Tab): Tải binary từ [jtroo/kanata Releases](https://github.com/jtroo/kanata/releases) và đặt vào `/usr/local/bin/kanata`.
+> **Optional Auxiliary Tools:**
+> - **Tomat** (Pomodoro timer for Waybar): Place pre-built binary into `~/.local/bin/` or install via `cargo install tomat`.
+> - **Kanata** (Keyboard remapping for Caps/Tab): Download binary from [jtroo/kanata Releases](https://github.com/jtroo/kanata/releases) to `/usr/local/bin/kanata`.
 
 ---
 
-### Bước 2: Kéo và áp dụng Dotfiles với Chezmoi
+### Step 2: Initialize & Apply Dotfiles with Chezmoi
 
-Chỉ với 1 dòng lệnh duy nhất, chezmoi sẽ clone repo về máy và deploy toàn bộ cấu hình vào `$HOME`:
+With a single command, chezmoi clones this repository and deploys all configuration files directly into `$HOME`:
 
 ```bash
 chezmoi init --apply https://github.com/htn5299/dotfiles
 ```
 
-*(Hoặc dùng SSH nếu đã add SSH key vào GitHub: `chezmoi init --apply git@github.com:htn5299/dotfiles.git`)*
+*(Or via SSH if your SSH key is added to GitHub: `chezmoi init --apply git@github.com:htn5299/dotfiles.git`)*
 
 ---
 
-### Bước 3: Thiết lập Zsh làm Shell mặc định & Khởi động lại
+### Step 3: Set Zsh as Default Shell & Reboot
 
 ```bash
-# Đổi default shell sang zsh
+# Set zsh as the default login shell
 chsh -s $(which zsh)
 
-# Bật service uinput & Kanata (nếu dùng)
+# Enable uinput module for Kanata (if used)
 sudo modprobe uinput
 ```
 
-Đăng xuất hoặc reboot máy, sau đó chọn session **Niri** tại màn hình đăng nhập.
+Log out or reboot your machine, then select the **Niri** session at your login screen.
 
 ---
 
-## 📖 Hướng dẫn sử dụng Chezmoi hàng ngày
+## 📖 Daily Chezmoi Workflow Guide
 
-Chezmoi quản lý file cấu hình bằng cách lưu các file nguồn trong thư mục repo (`~/.local/share/chezmoi/`) và tạo file đích tương ứng trong thư mục `$HOME`.
+Chezmoi stores the source configuration files in `~/.local/share/chezmoi/` and applies the target files into `$HOME`.
 
-### 1. Quy ước đặt tên file trong Chezmoi
-- File/thư mục bắt đầu bằng dấu chấm (`.`) sẽ có tiền tố `dot_` (ví dụ: `dot_zshrc` $\rightarrow$ `~/.zshrc`, `dot_config/` $\rightarrow$ `~/.config/`).
-- File script có quyền thực thi sẽ có tiền tố `executable_` (ví dụ: `dot_local/bin/executable_fuzzel-power-menu`).
+### 1. File Naming Conventions in Chezmoi
+- Dotfiles/directories prefixed with a dot (`.`) are stored with a `dot_` prefix (e.g., `dot_zshrc` $\rightarrow$ `~/.zshrc`, `dot_config/` $\rightarrow$ `~/.config/`).
+- Executable scripts use an `executable_` prefix (e.g., `dot_local/bin/executable_fuzzel-power-menu`).
 
 ---
 
-### 2. Các thao tác thường dùng
+### 2. Common Operations
 
-#### A. Thêm một file cấu hình mới vào Chezmoi
-Khi bạn muốn theo dõi thêm một file config mới (ví dụ `~/.config/btop/btop.conf`):
+#### A. Add a new configuration file to Chezmoi
+To track an existing configuration file (e.g., `~/.config/btop/btop.conf`):
 ```bash
 chezmoi add ~/.config/btop/btop.conf
 ```
 
-#### B. Chỉnh sửa cấu hình
-Có 2 cách:
-- **Cách 1 (Khuyên dùng)**: Dùng lệnh `chezmoi edit` để mở trực tiếp file trong repo:
+#### B. Edit configuration files
+Two approaches:
+- **Approach 1 (Recommended)**: Use `chezmoi edit` to edit the source file directly:
   ```bash
   chezmoi edit ~/.zshrc
-  # Lưu xong, chezmoi sẽ tự động áp dụng ra ~/.zshrc thực tế
+  # Upon saving, changes are automatically applied to ~/.zshrc
   ```
-- **Cách 2**: Bạn sửa trực tiếp file ở `~/.config/` như bình thường, sau đó nạp thay đổi vào chezmoi:
+- **Approach 2**: Modify the target file in `~/.config/` as usual, then re-add:
   ```bash
   chezmoi re-add
-  # hoặc: chezmoi add ~/.config/niri/config.kdl
+  # or: chezmoi add ~/.config/niri/config.kdl
   ```
 
-#### C. Xem khác biệt trước khi áp dụng
-Kiểm tra xem file thực tế trên máy khác gì so với cấu hình trong chezmoi:
+#### C. Preview diff before applying
+Check changes between your actual home directory and the chezmoi source:
 ```bash
 chezmoi diff
 ```
 
-#### D. Áp dụng thay đổi vào hệ thống
-Nếu bạn vừa pull repo mới về hoặc sửa đổi trong source chezmoi:
+#### D. Apply changes to system
+Apply updates from the repository to your home directory:
 ```bash
 chezmoi apply
 ```
 
-#### E. Đồng bộ lên GitHub
-Khi muốn lưu lại các thay đổi mới lên GitHub:
+#### E. Push changes to GitHub
 ```bash
-# Vào thư mục chezmoi source
+# Navigate to the chezmoi source directory
 chezmoi cd
 
-# Dùng Git như bình thường
+# Use standard Git commands
 git status
 git add .
 git commit -m "feat: update my config"
 git push
 
-# Quay lại thư mục trước đó
+# Return to your previous directory
 exit
 ```
 
 ---
 
-## 🧩 Danh sách các module cấu hình
+## 🧩 Configuration Modules Overview
 
-| Thành phần | Đường dẫn trong Dotfiles | Mô tả |
+| Component | Path in Dotfiles | Description |
 | :--- | :--- | :--- |
-| **Niri** | `dot_config/niri/config.kdl` | Window manager, layout, keybindings & autostart |
-| **Waybar** | `dot_config/waybar/` | Status bar (theme Base24 Tomorrow Night) |
-| **SwayNC** | `dot_config/swaync/` | Trung tâm thông báo & control center |
-| **Ghostty** | `dot_config/ghostty/config` | Terminal GPU-accelerated với font JetBrainsMono & palette màu |
-| **Starship** | `dot_config/starship.toml` | Prompt shell hiện đại (preset pure/minimal) |
-| **Zsh** | `dot_zshrc` | Zsh config, vi-mode, eza aliases, autosuggestions |
-| **Neovim** | `dot_config/nvim/` | Lazy.nvim, Native LSP (không dùng Mason), Blink.cmp, Fzf-lua |
-| **Fuzzel** | `dot_config/fuzzel/fuzzel.ini` | App launcher & clipboard picker qua Dmenu mode |
-| **Power Menu**| `dot_local/bin/executable_fuzzel-power-menu` | Menu tắt/khoá/reboot máy (`Mod+M`) |
-| **Hypridle/Lock**| `dot_config/hypr/` | Tự động tắt màn hình, suspend và màn hình khoá |
+| **Niri** | `dot_config/niri/config.kdl` | Window manager, scrolling layout, keybindings & autostart |
+| **Waybar** | `dot_config/waybar/` | Status bar (Base24 Tomorrow Night theme) |
+| **SwayNC** | `dot_config/swaync/` | Notification daemon & control center |
+| **Ghostty** | `dot_config/ghostty/config` | GPU-accelerated terminal with JetBrainsMono font & custom palette |
+| **Starship** | `dot_config/starship.toml` | Minimal prompt preset (Pure-like) |
+| **Zsh** | `dot_zshrc` | Zsh config, vi-mode, eza aliases, syntax-highlighting & autosuggestions |
+| **Neovim** | `dot_config/nvim/` | Lazy.nvim, Native LSP (no Mason), Blink.cmp, Fzf-lua |
+| **Fuzzel** | `dot_config/fuzzel/fuzzel.ini` | Application launcher & clipboard picker in Dmenu mode |
+| **Power Menu**| `dot_local/bin/executable_fuzzel-power-menu` | Power / Lock / Reboot menu (`Mod+M`) |
+| **Hypridle/Lock**| `dot_config/hypr/` | Idle management, screen blanking, suspend & lockscreen |
 | **Herdr** | `dot_config/herdr/config.toml` | Multiplexer workspace client config |
-| **Kanata** | `dot_config/kanata/kanata.kbd` | Remap Caps $\rightarrow$ Esc/Super, Tab $\rightarrow$ Arrows layer |
+| **Kanata** | `dot_config/kanata/kanata.kbd` | Caps $\rightarrow$ Esc/Super, Tab $\rightarrow$ Arrows layer remapping |

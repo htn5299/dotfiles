@@ -94,11 +94,11 @@ tooltip label {
 
 /* tomat pomodoro states */
 #custom-tomat.work {
-  color: @base08; /* đỏ - đang làm việc */
+  color: @base08; /* red - working */
 }
 
 #custom-tomat.break {
-  color: @base0B; /* xanh lá - đang nghỉ */
+  color: @base0B; /* green - short break */
 }
 
 #custom-tomat.long-break {
@@ -108,7 +108,7 @@ tooltip label {
 #custom-tomat.work-paused,
 #custom-tomat.break-paused,
 #custom-tomat.long-break-paused {
-  color: @base03; /* xám - khi pause */
+  color: @base03; /* gray - paused */
 }
 
 #idle_inhibitor.activated {

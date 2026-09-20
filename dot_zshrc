@@ -7,7 +7,7 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
-# Zsh Plugins (Cài qua dnf: sudo dnf install zsh-autosuggestions zsh-syntax-highlighting)
+# Zsh Plugins (Install via dnf: sudo dnf install zsh-autosuggestions zsh-syntax-highlighting)
 for p in /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
          /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
   [ -f "$p" ] && source "$p"
