@@ -36,6 +36,11 @@ sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 ```
 
 > **Optional Auxiliary Tools:**
+> - **fnm** (Fast Node Manager - per-project Node version switching):
+>   ```bash
+>   cargo install fnm
+>   # or: curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+>   ```
 > - **Tomat** (Pomodoro timer for Waybar): Place pre-built binary into `~/.local/bin/` or install via `cargo install tomat`.
 > - **Kanata** (Keyboard remapping for Caps/Tab): Download binary from [jtroo/kanata Releases](https://github.com/jtroo/kanata/releases) to `/usr/local/bin/kanata`.
 

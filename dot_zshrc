@@ -7,6 +7,11 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
+# Fast Node Manager (fnm) - Auto switch Node version per project based on .nvmrc or .node-version
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # Zsh Plugins (Install via dnf: sudo dnf install zsh-autosuggestions zsh-syntax-highlighting)
 for p in /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
          /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
