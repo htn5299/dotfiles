@@ -26,7 +26,7 @@ sudo dnf install -y fcitx5 fcitx5-unikey fcitx5-gtk fcitx5-qt
 
 # 4. Terminal, Editor & Core CLI Utilities
 sudo dnf install -y chezmoi git lazygit zsh ghostty neovim \
-                    gcc make ripgrep fd-find fzf zoxide eza bat yt-dlp
+                    gcc make cargo ripgrep fd-find fzf zoxide eza bat yt-dlp
 
 # 5. Zsh Plugins
 sudo dnf install -y zsh-autosuggestions zsh-syntax-highlighting
