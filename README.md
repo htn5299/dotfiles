@@ -71,10 +71,22 @@ chezmoi init --apply https://github.com/htn5299/dotfiles
 ```bash
 # Set zsh as the default login shell
 chsh -s $(which zsh)
-
-# Enable uinput module for Kanata (if used)
-sudo modprobe uinput
 ```
+
+---
+
+### Step 4 (Optional): Setup Kanata (Caps/Tab Key Remapping)
+
+Kanata remaps `Caps` $\rightarrow$ tap=Esc / hold=Super, and `Tab` $\rightarrow$ tap=Tab / hold=Arrows layer (`hjkl`).
+
+A setup script is already included in your dotfiles. Simply run:
+```bash
+setup-kanata
+```
+
+*(This automatically downloads Kanata, configures `uinput` permissions, and starts the systemd service).*
+
+---
 
 Log out or reboot your machine, then select the **Niri** session at your login screen.
 
