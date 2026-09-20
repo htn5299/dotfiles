@@ -59,4 +59,4 @@ alias yta='yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 --embed-m
 --cookies-from-browser firefox \
 --output="~/Music/yt-dlp/%(playlist)s/%(title)s.%(ext)s"'
 
-export PATH="$HOME/.gemini/antigravity-cli/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"

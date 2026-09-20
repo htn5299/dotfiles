@@ -36,12 +36,11 @@ sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 ```
 
 > **AI Assistants & Developer Tools:**
-> - **Claude Code** (Anthropic's terminal agent):
+> - **Claude Code** (Anthropic terminal agent):
 >   ```bash
 >   npm install -g @anthropic-ai/claude-code
 >   ```
-> - **Antigravity CLI** (Google DeepMind agent):
->   - Follow Google's installation guide or place the `antigravity-cli` binary directory into `~/.gemini/antigravity-cli/bin/` (already exported in `PATH`).
+> - **Antigravity CLI**: Install according to your custom installer/scripts.
 >
 > **Optional Auxiliary Tools:**
 > - **fnm** (Fast Node Manager - per-project Node version switching):
