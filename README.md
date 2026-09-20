@@ -26,7 +26,7 @@ sudo dnf install -y niri uwsm xwayland-satellite waybar swaync fuzzel waypaper b
 sudo dnf install -y fcitx5 fcitx5-bamboo fcitx5-gtk fcitx5-qt
 
 # 4. Terminal, Editor & Core CLI Utilities
-sudo dnf install -y chezmoi git lazygit zsh ghostty neovim \
+sudo dnf install -y chezmoi git gh lazygit zsh ghostty neovim \
                     gcc make cargo ripgrep fd-find fzf zoxide eza bat yt-dlp
 
 # 5. Zsh Plugins
@@ -54,19 +54,34 @@ sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 
 ---
 
-### Step 2: Initialize & Apply Dotfiles with Chezmoi
+### Step 2: Authenticate GitHub with `gh` & SSH
 
-With a single command, chezmoi clones this repository and deploys all configuration files directly into `$HOME`:
+Set up SSH keys and authenticate via GitHub CLI in a few seconds:
 
 ```bash
-chezmoi init --apply https://github.com/htn5299/dotfiles
-```
+# 1. Login to GitHub via browser/token and configure SSH protocol
+gh auth login -p ssh -w
 
-*(Or via SSH if your SSH key is added to GitHub: `chezmoi init --apply git@github.com:htn5299/dotfiles.git`)*
+# 2. Configure default git identity and editor
+git config --global user.name "htn"
+git config --global user.email "htn5299@gmail.com"
+git config --global init.defaultBranch "master"
+gh config set editor "nvim"
+```
 
 ---
 
-### Step 3: Set Zsh as Default Shell & Reboot
+### Step 3: Initialize & Apply Dotfiles via SSH with Chezmoi
+
+Now clone and deploy your dotfiles using your authenticated SSH connection:
+
+```bash
+chezmoi init --apply git@github.com:htn5299/dotfiles.git
+```
+
+---
+
+### Step 4: Set Zsh as Default Shell & Reboot
 
 ```bash
 # Set zsh as the default login shell
@@ -75,7 +90,7 @@ chsh -s $(which zsh)
 
 ---
 
-### Step 4 (Optional): Setup Kanata (Caps/Tab Key Remapping)
+### Step 5 (Optional): Setup Kanata (Caps/Tab Key Remapping)
 
 Kanata remaps `Caps` $\rightarrow$ tap=Esc / hold=Super, and `Tab` $\rightarrow$ tap=Tab / hold=Arrows layer (`hjkl`).
 
