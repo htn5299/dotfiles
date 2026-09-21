@@ -1,0 +1,8 @@
+profile undocked {
+    output eDP-1 enable scale 1.1
+}
+
+profile home_office {
+    output "GIGA-BYTE TECHNOLOGY CO., LTD. G25F2A 25335B000876" mode 1920x1080
+    output eDP-1 disable
+}

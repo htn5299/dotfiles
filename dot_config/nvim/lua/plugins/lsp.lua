@@ -6,15 +6,24 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      -- List of LSP servers installed via DNF / Cargo / Go / NPM on Fedora
+      -- List of standard LSP servers installed via DNF / Cargo / Go / NPM on Fedora
       local servers = {
         "lua_ls",         -- Lua
         "pyright",        -- Python
         "gopls",          -- Go
         "rust_analyzer",  -- Rust
+        "csharp_ls",      -- C# (or omnisharp)
         "bashls",         -- Bash
         "ts_ls",          -- TypeScript / JavaScript
-        "nil_ls",         -- Nix (if needed)
+        "html",           -- HTML
+        "cssls",          -- CSS / SCSS
+        "jsonls",         -- JSON
+        "yamlls",         -- YAML
+        "taplo",          -- TOML
+        "marksman",       -- Markdown
+        "sqlls",          -- SQL
+        "terraformls",    -- Terraform
+        "nil_ls",         -- Nix
       }
 
       for _, server in ipairs(servers) do
@@ -22,6 +31,13 @@ return {
           capabilities = capabilities,
         })
       end
+
+      -- Angular Language Server with custom filetypes
+      lspconfig.angularls.setup({
+        capabilities = capabilities,
+        filetypes = { "typescript", "html", "typescriptreact", "htmlangular" },
+        root_dir = lspconfig.util.root_pattern("angular.json", "nx.json"),
+      })
 
       -- Diagnostic Signs for error/warning icons
       vim.diagnostic.config({
@@ -50,6 +66,19 @@ return {
         python = { "black" },
         go = { "gofmt" },
         rust = { "rustfmt" },
+        csharp = { "csharpier" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        html = { "prettier" },
+        htmlangular = { "prettier" },
+        css = { "prettier" },
+        scss = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        terraform = { "terraform_fmt" },
+        sql = { "sqlfluff" },
       },
       format_on_save = function()
         if vim.g.autoformat == false then return end
@@ -61,3 +90,4 @@ return {
   -- Trouble.nvim for diagnostics list
   { "folke/trouble.nvim", opts = {} },
 }
+

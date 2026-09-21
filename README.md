@@ -15,12 +15,13 @@ Open terminal and run:
 sudo dnf copr enable -y yalter/niri
 sudo dnf copr enable -y pgdev/ghostty
 
-# 2. Window Manager, Desktop Components, Portals & Audio/Brightness
+# 2. Window Manager, Desktop Components, Portals & Theming
 sudo dnf install -y niri uwsm xwayland-satellite waybar swaync fuzzel waypaper blueman \
-                    hypridle hyprlock hyprpicker thunar \
+                    hypridle hyprlock hyprpicker thunar kanshi poweralertd udiskie \
                     xdg-desktop-portal-gtk xdg-desktop-portal-gnome polkit-gnome nautilus \
                     brightnessctl playerctl pamixer cliphist wl-clipboard \
-                    pipewire-utils pavucontrol acpi jq
+                    pipewire-utils pavucontrol acpi jq mpv dconf \
+                    kvantum qt5ct qt6ct
 
 # 3. Input Method (Vietnamese / Fcitx5 with Bamboo engine)
 sudo dnf install -y fcitx5 fcitx5-bamboo fcitx5-gtk fcitx5-qt
@@ -34,6 +35,11 @@ sudo dnf install -y zsh-autosuggestions zsh-syntax-highlighting
 
 # 6. Fonts
 sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
+# Ubuntu Nerd Font (used by Fuzzel, Hyprlock, and GTK):
+mkdir -p ~/.local/share/fonts
+curl -fLo /tmp/Ubuntu.tar.xz https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Ubuntu.tar.xz
+tar -xf /tmp/Ubuntu.tar.xz -C ~/.local/share/fonts && rm /tmp/Ubuntu.tar.xz
+fc-cache -f -v
 ```
 
 > **AI Assistants & Developer Tools:**
@@ -42,6 +48,10 @@ sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 >   npm install -g @anthropic-ai/claude-code
 >   ```
 > - **Antigravity CLI**: Install according to your custom installer/scripts.
+> - **GitHub CLI Extensions**:
+>   ```bash
+>   gh extension install yusukebe/gh-markdown-preview
+>   ```
 >
 > **Optional Auxiliary Tools:**
 > - **fnm** (Fast Node Manager - per-project Node version switching):
@@ -49,7 +59,10 @@ sudo dnf install -y jetbrains-mono-fonts-all google-noto-sans-fonts
 >   cargo install fnm
 >   # or: curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 >   ```
-> - **Tomat** (Pomodoro timer for Waybar): Place pre-built binary into `~/.local/bin/` or install via `cargo install tomat`.
+> - **Tomat** (Pomodoro timer for Waybar): Place pre-built binary into `~/.local/bin/` or install via `cargo install tomat`. Enable background service:
+>   ```bash
+>   systemctl --user enable --now tomat
+>   ```
 > - **Kanata** (Keyboard remapping for Caps/Tab): Download binary from [jtroo/kanata Releases](https://github.com/jtroo/kanata/releases) to `/usr/local/bin/kanata`.
 
 ---
@@ -177,9 +190,13 @@ exit
 | **Ghostty** | `dot_config/ghostty/config` | GPU-accelerated terminal with JetBrainsMono font & custom palette |
 | **Starship** | `dot_config/starship.toml` | Minimal prompt preset (Pure-like) |
 | **Zsh** | `dot_zshrc` | Zsh config, vi-mode, eza aliases, syntax-highlighting & autosuggestions |
-| **Neovim** | `dot_config/nvim/` | Lazy.nvim, Native LSP (no Mason), Blink.cmp, Fzf-lua |
+| **Neovim** | `dot_config/nvim/` | Native LSP (19 languages), Blink.cmp, Conform, Treesitter, Fzf-lua |
 | **Fuzzel** | `dot_config/fuzzel/fuzzel.ini` | Application launcher & clipboard picker in Dmenu mode |
 | **Power Menu**| `dot_local/bin/executable_fuzzel-power-menu` | Power / Lock / Reboot menu (`Mod+M`) |
 | **Hypridle/Lock**| `dot_config/hypr/` | Idle management, screen blanking, suspend & lockscreen |
+| **Kanshi** | `dot_config/kanshi/config` | Dynamic display profiles (undocked vs external monitor) |
+| **MPV** | `dot_config/mpv/` | Video player config (high quality, subtitle priorities) |
+| **Theming** | `dot_config/gtk-{3,4}.0/`, `Kvantum/` | Qogir-Dark GTK/Qt/Kvantum theming & DMZ-White cursor |
 | **Herdr** | `dot_config/herdr/config.toml` | Multiplexer workspace client config |
 | **Kanata** | `dot_config/kanata/kanata.kbd` | Caps $\rightarrow$ Esc/Super, Tab $\rightarrow$ Arrows layer remapping |
+| **Tomat** | `dot_config/systemd/user/tomat.service` | Pomodoro daemon systemd unit |

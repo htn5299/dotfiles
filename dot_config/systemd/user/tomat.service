@@ -1,0 +1,13 @@
+[Unit]
+Description=Tomat pomodoro timer daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c 'exec $(command -v tomat || echo %h/.local/bin/tomat) daemon run'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

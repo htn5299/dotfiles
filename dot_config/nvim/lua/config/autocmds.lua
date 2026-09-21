@@ -46,3 +46,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- Angular template detection by project root (angular.json or nx.json)
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("angular_filetype"),
+  pattern = "*.html",
+  callback = function(event)
+    local root = vim.fs.find({ "angular.json", "nx.json" }, { upward = true, path = vim.fs.dirname(event.file) })[1]
+    if root then
+      vim.bo[event.buf].filetype = "htmlangular"
+    end
+  end,
+})
